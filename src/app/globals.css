@@ -27,6 +27,8 @@
   --color-status-success: #16a34a;
   --color-status-warning: #d97706;
   --color-status-error: #dc2626;
+  --color-status-neutral: #757575;
+  --color-status-info: #856df3;
   --font-sans: var(--font-nunito-sans), Arial, Helvetica, sans-serif;
   /* TODO(figma): confirm remaining font sizes. */
   --text-body: 1rem;
