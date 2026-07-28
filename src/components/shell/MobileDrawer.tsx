@@ -72,7 +72,13 @@ export function MobileDrawer({ open, onClose }: MobileDrawerProps) {
         className="relative flex h-full w-[min(86vw,320px)] flex-col overflow-y-auto bg-surface-card p-5 shadow-xl"
       >
         <div className="flex items-center justify-between">
-          <Image src="/logo-shipnow.svg" alt="ShipNow" width={132} height={37} />
+          <Image
+            src="/logo-shipnow.svg"
+            alt="ShipNow"
+            width={132}
+            height={37}
+            className="h-auto"
+          />
           <button
             ref={closeButtonRef}
             type="button"

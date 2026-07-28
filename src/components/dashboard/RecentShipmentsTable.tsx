@@ -43,10 +43,10 @@ export function RecentShipmentsTable() {
   }, [query, sort]);
 
   return (
-    <section className="overflow-hidden rounded-card border border-border-default bg-surface-card shadow-card" aria-labelledby="recent-shipments-heading">
+    <section className="w-full min-w-0 max-w-full overflow-hidden rounded-card border border-border-default bg-surface-card shadow-card" aria-labelledby="recent-shipments-heading">
       <header className="flex flex-wrap items-center gap-3 p-5">
         <h2 id="recent-shipments-heading" className="mr-auto font-bold text-text-primary">Recent Shipments</h2>
-        <Input label="Search shipment" aria-label="Search shipment" placeholder="Search shipment" value={query} onChange={(event) => setQuery(event.target.value)} leftAdornment={<Search className="size-4" />} containerClassName="min-w-52" className="bg-surface-input" />
+        <Input label="Search shipment" aria-label="Search shipment" placeholder="Search shipment" value={query} onChange={(event) => setQuery(event.target.value)} leftAdornment={<Search className="size-4" />} containerClassName="w-full min-w-0 tablet:w-auto tablet:min-w-52" className="bg-surface-input" />
         <button type="button" aria-label="Sort shipments" className="rounded-control border border-border-default p-2 text-text-secondary"><SlidersHorizontal className="size-5" /></button>
         <button type="button" aria-label="Recent shipments menu" className="rounded-control border border-border-default p-2 text-text-secondary"><Ellipsis className="size-5" /></button>
       </header>

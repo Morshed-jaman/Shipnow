@@ -3,9 +3,9 @@ import { Badge, Card, Input } from "@/components/ui";
 
 export function MapCard() {
   return (
-    <Card padding="none" className="h-full">
+    <Card padding="none" className="h-full w-full min-w-0 max-w-full">
       <div className="relative h-72 overflow-hidden bg-[#ECEBE7]">
-        <svg viewBox="0 0 600 300" className="absolute inset-0 size-full" role="img" aria-label="Illustrated route from San Francisco to New York">
+        <svg viewBox="0 0 600 300" preserveAspectRatio="xMidYMid slice" className="absolute inset-0 h-full w-full" role="img" aria-label="Illustrated route from San Francisco to New York">
           <path d="M0 245 C125 210 180 285 300 205 S450 95 600 55" fill="none" stroke="#D5D3CE" strokeWidth="52" />
           <path d="M55 245 C170 230 210 255 305 195 S445 110 545 65" fill="none" stroke="#856DF3" strokeWidth="4" strokeDasharray="9 7" />
           <circle cx="55" cy="245" r="9" fill="#856DF3" />
@@ -27,7 +27,7 @@ export function MapCard() {
             <Badge className="bg-status-info-light text-status-info">In Transit</Badge>
             <Badge className="bg-status-success-light text-status-success">On Schedule</Badge>
           </div>
-          <p className="text-small text-text-secondary">Courier: <strong className="text-text-primary">Daniel Cooper</strong> / SkyLogix Express</p>
+          <p className="min-w-0 break-words text-small text-text-secondary">Courier: <strong className="text-text-primary">Daniel Cooper</strong> / SkyLogix Express</p>
         </div>
         <div className="relative my-6 flex items-center justify-between px-2">
           <span className="size-4 rounded-full bg-brand-primary ring-4 ring-brand-light" />

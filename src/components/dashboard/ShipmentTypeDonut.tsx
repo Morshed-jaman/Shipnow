@@ -7,12 +7,12 @@ import { CardMenuButton } from "./CardMenuButton";
 
 export function ShipmentTypeDonut() {
   return (
-    <Card padding="lg" className="h-full">
+    <Card padding="lg" className="h-full w-full min-w-0 max-w-full">
       <div className="flex items-center justify-between">
         <h2 className="font-bold text-text-primary">Shipment Type</h2>
         <CardMenuButton label="Shipment type menu" />
       </div>
-      <div className="relative mx-auto mt-4 h-52 max-w-64">
+      <div className="relative mx-auto mt-4 h-52 w-full min-w-0 max-w-64">
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
             <Pie data={shipmentTypes} dataKey="value" nameKey="name" innerRadius={65} outerRadius={90} paddingAngle={2} stroke="none">

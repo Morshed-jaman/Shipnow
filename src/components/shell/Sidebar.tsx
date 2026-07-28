@@ -63,6 +63,7 @@ export function Sidebar() {
           alt="ShipNow"
           width={142}
           height={39}
+          className="h-auto"
           priority
         />
         <div className="mt-6">

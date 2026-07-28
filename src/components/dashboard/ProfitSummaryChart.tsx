@@ -14,7 +14,7 @@ import { profitSummary } from "@/data/dashboard";
 
 export function ProfitSummaryChart() {
   return (
-    <Card padding="lg" className="h-full">
+    <Card padding="lg" className="h-full w-full min-w-0 max-w-full">
       <div className="flex flex-wrap items-center gap-2">
         <div>
           <h2 className="font-bold text-text-primary">Profit Summary</h2>
@@ -31,7 +31,7 @@ export function ProfitSummaryChart() {
         <span><i className="mr-2 inline-block size-2 rounded-full bg-brand-light" />Revenue</span>
         <span><i className="mr-2 inline-block size-2 rounded-full bg-action-dark" />Cost</span>
       </div>
-      <div className="mt-2 h-64 min-w-0">
+      <div className="mt-2 h-64 w-full min-w-0">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={profitSummary} margin={{ top: 20, right: 4, left: -14, bottom: 0 }}>
             <CartesianGrid vertical={false} stroke="#E0E0E0" strokeDasharray="3 3" />

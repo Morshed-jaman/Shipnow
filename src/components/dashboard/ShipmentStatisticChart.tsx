@@ -14,7 +14,7 @@ import { shipmentStatistics } from "@/data/dashboard";
 
 export function ShipmentStatisticChart() {
   return (
-    <Card padding="lg" className="h-full">
+    <Card padding="lg" className="h-full w-full min-w-0 max-w-full">
       <div className="flex flex-wrap items-center gap-2">
         <h2 className="font-bold text-text-primary">Shipment Statistic</h2>
         <Badge className="bg-status-success-light text-status-success">+8.7%</Badge>
@@ -23,7 +23,7 @@ export function ShipmentStatisticChart() {
         </select>
       </div>
       <p className="mt-4 text-3xl font-bold text-text-primary">4,352</p>
-      <div className="mt-4 h-64 min-w-0">
+      <div className="mt-4 h-64 w-full min-w-0">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={shipmentStatistics} margin={{ top: 20, right: 8, left: -18, bottom: 0 }}>
             <defs>

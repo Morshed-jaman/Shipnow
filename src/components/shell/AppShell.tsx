@@ -18,9 +18,9 @@ export function AppShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-surface-page">
+    <div className="min-h-screen w-full bg-surface-page">
       <Sidebar />
-      <div className="min-h-screen tablet:pl-shell-rail lg:pl-shell-sidebar">
+      <div className="min-h-screen min-w-0 w-full tablet:pl-shell-rail lg:pl-shell-sidebar">
         <TopBar
           pageTitle={getPageTitle(pathname)}
           primaryAction={{
@@ -31,7 +31,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         >
           {pathname === "/dashboard" ? <DashboardGreeting /> : null}
         </TopBar>
-        <main className="p-4 tablet:p-6 lg:p-8">{children}</main>
+        <main className="min-w-0 w-full max-w-full p-4 tablet:p-6 lg:p-8">{children}</main>
       </div>
     </div>
   );

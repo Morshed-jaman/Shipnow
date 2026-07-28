@@ -25,8 +25,8 @@ export function RecentActivityCard() {
           <li key={item.time} className="relative flex gap-3 pb-5 last:pb-0">
             {index < activities.length - 1 && <span className="absolute left-[17px] top-8 h-full w-px bg-border-default" />}
             <span className="z-10 flex size-9 shrink-0 items-center justify-center rounded-full bg-brand-light text-brand-primary"><Activity className="size-4" /></span>
-            <div className="min-w-0">
-              <p className="text-small leading-relaxed text-text-primary"><ActivityText text={item.text} /></p>
+            <div className="min-w-0 flex-1">
+              <p className="break-words text-small leading-relaxed text-text-primary"><ActivityText text={item.text} /></p>
               <time className="mt-1 block text-xs text-text-secondary">{item.time}</time>
             </div>
           </li>

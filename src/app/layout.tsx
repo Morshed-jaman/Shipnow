@@ -10,6 +10,9 @@ const nunitoSans = Nunito_Sans({
 export const metadata: Metadata = {
   title: "ShipNow",
   description: "Manage logistics with ShipNow",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
