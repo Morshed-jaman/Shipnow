@@ -4,9 +4,11 @@ import Image from "next/image";
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button, Checkbox, Input } from "@/components/ui";
+import { SHIPNOW_SESSION_KEY } from "@/lib/session";
 
 const loginSchema = z.object({
   email: z
@@ -22,11 +24,8 @@ const loginSchema = z.object({
 
 export type LoginFormValues = z.infer<typeof loginSchema>;
 
-export interface LoginFormProps {
-  onValidSubmit?: (values: LoginFormValues) => void;
-}
-
-export function LoginForm({ onValidSubmit }: LoginFormProps) {
+export function LoginForm() {
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const {
     formState: { errors, isSubmitting },
@@ -63,7 +62,10 @@ export function LoginForm({ onValidSubmit }: LoginFormProps) {
         <form
           className="mt-14 space-y-5 text-left"
           noValidate
-          onSubmit={handleSubmit((values) => onValidSubmit?.(values))}
+          onSubmit={handleSubmit(() => {
+            localStorage.setItem(SHIPNOW_SESSION_KEY, "active");
+            router.push("/dashboard");
+          })}
         >
           <Input
             label="Email Address"
