@@ -6,14 +6,15 @@
  */
 :root {
   --background: #fefefe;
-  --foreground: #292929;
+  --foreground: #333333;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-brand-primary: #856df3;
-  --color-text-primary: #292929;
+  --color-brand-dark: #2a1298;
+  --color-text-primary: #333333;
   --color-text-secondary: #757575;
   --color-surface-page: #fefefe;
   --color-surface-input: #f5f5f5;
@@ -21,12 +22,11 @@
   --color-surface-card: #ffffff;
   /* TODO(figma): confirm input and default border colors. */
   --color-border-default: #e5e7eb;
-  /* TODO(figma): confirm dark Login button color. */
-  --color-action-dark: #292929;
-  /* TODO(figma): confirm status colors. */
+  --color-action-dark: #333333;
+  /* TODO(figma): confirm remaining status colors. */
   --color-status-success: #16a34a;
   --color-status-warning: #d97706;
-  --color-status-error: #dc2626;
+  --color-status-error: #f04a4a;
   --color-status-neutral: #757575;
   --color-status-info: #856df3;
   --font-sans: var(--font-nunito-sans), Arial, Helvetica, sans-serif;
@@ -50,6 +50,13 @@
   --breakpoint-mobile: 375px;
   --breakpoint-tablet: 768px;
   --breakpoint-desktop: 1440px;
+  --spacing-login-form: 400px;
+  --spacing-login-input-height: 38px;
+  --spacing-login-button-height: 44px;
+  --spacing-login-truck-width: 410px;
+  --spacing-login-truck-height: 386px;
+  --spacing-login-phone-width: 178.461px;
+  --spacing-login-phone-height: 228px;
 }
 
 body {

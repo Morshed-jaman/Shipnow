@@ -8,9 +8,10 @@
 export const colors = {
   brand: {
     primary: "#856DF3",
+    dark: "#2A1298",
   },
   text: {
-    primary: "#292929",
+    primary: "#333333",
     secondary: "#757575",
   },
   surface: {
@@ -24,14 +25,13 @@ export const colors = {
     default: "#E5E7EB",
   },
   action: {
-    // TODO(figma): confirm dark Login button color.
-    dark: "#292929",
+    dark: "#333333",
   },
   status: {
-    // TODO(figma): confirm status colors.
+    // TODO(figma): confirm remaining status colors.
     success: "#16A34A",
     warning: "#D97706",
-    error: "#DC2626",
+    error: "#F04A4A",
     neutral: "#757575",
     info: "#856DF3",
   },
@@ -107,6 +107,15 @@ export const layout = {
     headlineInternalGap: "12px",
     heroImageWidth: "553px",
     heroImageHeight: "499px",
+    formWidth: "400px",
+    inputHeight: "38px",
+    buttonHeight: "44px",
+    truckImageWidth: "410px",
+    truckImageHeight: "386px",
+    phoneImageWidth: "178.461px",
+    phoneImageHeight: "228px",
+    stackedPanelHeight: "1024px",
+    mobilePanelHeight: "812px",
   },
 } as const;
 
