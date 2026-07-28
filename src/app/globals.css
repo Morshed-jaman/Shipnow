@@ -13,15 +13,16 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-brand-primary: #856df3;
+  --color-brand-light: #e3ddff;
   --color-brand-dark: #2a1298;
   --color-text-primary: #333333;
   --color-text-secondary: #757575;
-  --color-surface-page: #fefefe;
+  --color-surface-page: #f0f0f0;
   --color-surface-input: #f5f5f5;
   /* TODO(figma): confirm card and additional surface colors. */
-  --color-surface-card: #ffffff;
+  --color-surface-card: #fefefe;
   /* TODO(figma): confirm input and default border colors. */
-  --color-border-default: #e5e7eb;
+  --color-border-default: #e0e0e0;
   --color-action-dark: #333333;
   /* TODO(figma): confirm remaining status colors. */
   --color-status-success: #16a34a;
@@ -43,6 +44,7 @@
   --spacing-10: 40px;
   --spacing-12: 48px;
   --radius-control: 8px;
+  --radius-nav: 4px;
   /* TODO(figma): confirm additional radii. */
   --radius-card: 12px;
   /* TODO(figma): confirm shadows. */
@@ -57,6 +59,8 @@
   --spacing-login-truck-height: 386px;
   --spacing-login-phone-width: 178.461px;
   --spacing-login-phone-height: 228px;
+  --spacing-shell-sidebar: 223px;
+  --spacing-shell-rail: 68px;
 }
 
 body {

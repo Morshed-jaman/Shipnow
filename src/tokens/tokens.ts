@@ -8,6 +8,7 @@
 export const colors = {
   brand: {
     primary: "#856DF3",
+    light: "#E3DDFF",
     dark: "#2A1298",
   },
   text: {
@@ -15,14 +16,14 @@ export const colors = {
     secondary: "#757575",
   },
   surface: {
-    page: "#FEFEFE",
+    page: "#F0F0F0",
     input: "#F5F5F5",
     // TODO(figma): confirm card and additional surface colors.
-    card: "#FFFFFF",
+    card: "#FEFEFE",
   },
   border: {
     // TODO(figma): confirm input and default border colors.
-    default: "#E5E7EB",
+    default: "#E0E0E0",
   },
   action: {
     dark: "#333333",
@@ -76,6 +77,7 @@ export const spacing = {
 } as const;
 
 export const radii = {
+  nav: "4px",
   control: "8px",
   // TODO(figma): confirm additional radii.
   card: "12px",
@@ -94,6 +96,10 @@ export const breakpoints = {
 } as const;
 
 export const layout = {
+  shell: {
+    sidebarWidth: "223px",
+    railWidth: "68px",
+  },
   login: {
     leftPanelWidth: "720px",
     referenceHeight: "1024px",
