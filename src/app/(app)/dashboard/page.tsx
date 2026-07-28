@@ -1,4 +1,6 @@
 import { MetricCard } from "@/components/dashboard/MetricCard";
+import { ProfitSummaryChart } from "@/components/dashboard/ProfitSummaryChart";
+import { ShipmentStatisticChart } from "@/components/dashboard/ShipmentStatisticChart";
 import { metrics } from "@/data/dashboard";
 
 export default function DashboardPage() {
@@ -7,6 +9,10 @@ export default function DashboardPage() {
       <h1 className="sr-only">Dashboard</h1>
       <section aria-label="Shipment overview" className="grid gap-5">
         {metrics.map((metric) => <MetricCard key={metric.label} metric={metric} />)}
+      </section>
+      <section aria-label="Shipment and profit charts" className="grid gap-5 tablet:grid-cols-2">
+        <ShipmentStatisticChart />
+        <ProfitSummaryChart />
       </section>
     </div>
   );
