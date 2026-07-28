@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
+import { DashboardGreeting } from "@/components/dashboard/DashboardGreeting";
 import { Sidebar } from "./Sidebar";
 import { TopBar } from "./TopBar";
 import { primaryNavigation, utilityNavigation } from "./navigation";
@@ -27,7 +28,9 @@ export function AppShell({ children }: { children: ReactNode }) {
             shortLabel: "New Shipping",
             onClick: () => undefined,
           }}
-        />
+        >
+          {pathname === "/dashboard" ? <DashboardGreeting /> : null}
+        </TopBar>
         <main className="p-4 tablet:p-6 lg:p-8">{children}</main>
       </div>
     </div>

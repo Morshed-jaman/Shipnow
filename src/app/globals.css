@@ -24,12 +24,13 @@
   /* TODO(figma): confirm input and default border colors. */
   --color-border-default: #e0e0e0;
   --color-action-dark: #333333;
-  /* TODO(figma): confirm remaining status colors. */
-  --color-status-success: #16a34a;
+  --color-status-success: #007837;
+  --color-status-success-light: #d9f9e7;
   --color-status-warning: #d97706;
   --color-status-error: #f04a4a;
   --color-status-neutral: #757575;
-  --color-status-info: #856df3;
+  --color-status-info: #235bc2;
+  --color-status-info-light: #e3edff;
   --font-sans: var(--font-nunito-sans), Arial, Helvetica, sans-serif;
   /* TODO(figma): confirm remaining font sizes. */
   --text-body: 1rem;

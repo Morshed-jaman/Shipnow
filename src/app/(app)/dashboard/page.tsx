@@ -1,15 +1,13 @@
+import { MetricCard } from "@/components/dashboard/MetricCard";
+import { metrics } from "@/data/dashboard";
+
 export default function DashboardPage() {
   return (
-    <section aria-labelledby="dashboard-heading">
-      <h2
-        id="dashboard-heading"
-        className="text-2xl font-bold text-text-primary"
-      >
-        Dashboard
-      </h2>
-      <p className="mt-2 text-text-secondary">
-        Content coming in the next step.
-      </p>
-    </section>
+    <div className="grid gap-5">
+      <h1 className="sr-only">Dashboard</h1>
+      <section aria-label="Shipment overview" className="grid gap-5">
+        {metrics.map((metric) => <MetricCard key={metric.label} metric={metric} />)}
+      </section>
+    </div>
   );
 }

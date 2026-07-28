@@ -29,12 +29,13 @@ export const colors = {
     dark: "#333333",
   },
   status: {
-    // TODO(figma): confirm remaining status colors.
-    success: "#16A34A",
+    success: "#007837",
+    successLight: "#D9F9E7",
     warning: "#D97706",
     error: "#F04A4A",
     neutral: "#757575",
-    info: "#856DF3",
+    info: "#235BC2",
+    infoLight: "#E3EDFF",
   },
 } as const;
 
