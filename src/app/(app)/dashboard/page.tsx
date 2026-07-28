@@ -1,6 +1,9 @@
 import { MetricCard } from "@/components/dashboard/MetricCard";
+import { MapCard } from "@/components/dashboard/MapCard";
 import { ProfitSummaryChart } from "@/components/dashboard/ProfitSummaryChart";
 import { ProductCategoriesCard } from "@/components/dashboard/ProductCategoriesCard";
+import { RecentActivityCard } from "@/components/dashboard/RecentActivityCard";
+import { ShipmentAlertsCard } from "@/components/dashboard/ShipmentAlertsCard";
 import { ShipmentStatisticChart } from "@/components/dashboard/ShipmentStatisticChart";
 import { ShipmentTypeDonut } from "@/components/dashboard/ShipmentTypeDonut";
 import { metrics } from "@/data/dashboard";
@@ -19,6 +22,13 @@ export default function DashboardPage() {
       <section aria-label="Shipment and product distribution" className="grid gap-5 tablet:grid-cols-2">
         <ShipmentTypeDonut />
         <ProductCategoriesCard />
+      </section>
+      <section aria-label="Shipment map">
+        <MapCard />
+      </section>
+      <section aria-label="Alerts and activity" className="grid gap-5 tablet:grid-cols-2">
+        <ShipmentAlertsCard />
+        <RecentActivityCard />
       </section>
     </div>
   );
