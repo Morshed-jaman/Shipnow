@@ -9,10 +9,10 @@ export function BrandPanel() {
         width={264}
         height={72}
         priority
-        className="mt-[138px] h-auto w-[160px] tablet:mt-[140px] tablet:w-[264px] lg:ml-[244px] lg:mt-[137px]"
+        className="mt-[127px] h-auto w-[168px] tablet:mt-[131px] tablet:w-[264px] lg:ml-[244px] lg:mt-[137px]"
       />
 
-      <div className="relative mt-[54px] h-[263px] w-[256px] tablet:mt-[100px] tablet:h-[443px] tablet:w-[448px] lg:ml-[155px] lg:mt-[41px]">
+      <div className="relative mt-[48px] h-[263px] w-[256px] tablet:mt-[38px] tablet:h-[443px] tablet:w-[448px] lg:ml-[155px] lg:mt-[41px]">
         <Image
           src="/login-hero-truck.jpg"
           alt="A delivery truck loaded with parcels"
