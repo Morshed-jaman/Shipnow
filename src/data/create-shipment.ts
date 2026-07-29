@@ -2,7 +2,7 @@ import { z } from "zod";
 import type { DefaultValues } from "react-hook-form";
 
 const positiveNumber = (message: string) =>
-  z.coerce.number().positive(message);
+  z.number().positive(message);
 
 export const createShipmentSchema = z.object({
   senderCompany: z.string().min(1, "Company is required."),

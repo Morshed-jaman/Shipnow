@@ -38,3 +38,6 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Design assumptions
+
+- Create New Shipment shipping-method options were not included in the supplied frame transcription. The select uses Standard, Express, and Priority while preserving the specified empty “Select Method” error state.
