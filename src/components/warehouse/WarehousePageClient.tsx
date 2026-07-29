@@ -21,7 +21,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useSyncExternalStore } from "react";
 import { Card } from "@/components/ui";
 import { DashboardFooter } from "@/components/dashboard/DashboardFooter";
 import {
@@ -46,6 +46,21 @@ const freightIcons = {
 } as const;
 const floorNames = ["Floor 1", "Floor 2", "Floor 3"] as const;
 const statusTabs: Array<"All" | PackageStatus> = ["All", "Expected", "Received", "Sent"];
+const tabletMediaQuery = "(min-width: 768px)";
+
+function subscribeToTablet(callback: () => void) {
+  const mediaQuery = window.matchMedia(tabletMediaQuery);
+  mediaQuery.addEventListener("change", callback);
+  return () => mediaQuery.removeEventListener("change", callback);
+}
+
+function useTabletLayout() {
+  return useSyncExternalStore(
+    subscribeToTablet,
+    () => window.matchMedia(tabletMediaQuery).matches,
+    () => false,
+  );
+}
 
 function MenuButton({ label }: { label: string }) {
   return <button type="button" aria-label={label} className="rounded-control p-1 text-text-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary"><Ellipsis className="size-5" /></button>;
@@ -60,14 +75,14 @@ function WarehouseHeader({ active, onChange }: { active: FreightTypeTab; onChang
           <Link href="/dashboard">Dashboard</Link><span>/</span><span aria-current="page">Warehouse</span>
         </nav>
       </div>
-      <div role="tablist" aria-label="Freight type" className="flex gap-2">
+      <div role="tablist" aria-label="Freight type" className="flex min-w-0 gap-1.5 overflow-x-auto pb-1">
         {freightTypes.map((type, index) => {
           const Icon = freightIcons[type];
           return (
             <button key={type} type="button" role="tab" aria-selected={active === type} aria-label={type} onClick={() => onChange(type)}
-              className={cn("inline-flex h-10 items-center justify-center gap-2 rounded-full border border-border-default bg-surface-card px-3 text-small font-semibold text-text-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary", active === type && "border-action-dark bg-action-dark text-surface-card")}>
+              className={cn("inline-flex h-10 shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-full border border-border-default bg-surface-card px-2.5 text-small font-semibold text-text-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary", active === type && "border-action-dark bg-action-dark text-surface-card")}>
               <Icon className="size-4 shrink-0" aria-hidden="true" />
-              <span className={cn(index > 0 && "hidden tablet:inline")}>{type}</span>
+              <span className={cn("whitespace-nowrap", index > 0 && "hidden tablet:inline")}>{type}</span>
             </button>
           );
         })}
@@ -108,19 +123,23 @@ function inventoryFill(fill: string, suffix: string) {
 }
 
 function InventoryCard() {
+  const tabletLayout = useTabletLayout();
+
   return (
     <Card padding="lg" className="h-full min-w-0">
       <div className="flex items-start justify-between">
         <div><h2 className="font-bold">Warehouse Inventory</h2><p className="mt-3 text-3xl font-bold">10,000 <span className="text-small font-normal text-text-secondary">packages</span></p></div>
         <MenuButton label="Warehouse inventory menu" />
       </div>
-      <div className="mt-6 hidden h-64 grid-cols-6 gap-3 tablet:grid">
+      {tabletLayout ? (
+      <div className="mt-6 grid h-[260px] grid-cols-6 gap-2">
         {inventory.map((item, index) => {
           const suffix = `v${index}`;
           return (
-            <div key={item.name} className="grid min-w-0 grid-rows-[40px_1fr_36px] text-center">
+            <div key={item.name} className="grid min-w-0 grid-rows-[42px_168px_32px] text-center">
               <p className="text-xs font-semibold leading-tight">{item.name}</p>
-              <ResponsiveContainer width="100%" height="100%">
+              <div className="h-[168px] min-h-[168px] min-w-0">
+              <ResponsiveContainer width="100%" height="100%" minHeight={168}>
                 <BarChart data={[item]} margin={{ top: 4, right: 6, left: 6, bottom: 0 }}>
                   <PatternDefs suffix={suffix} /><YAxis domain={[0, 30]} hide />
                   <Bar dataKey="percent" background={{ fill: "#F0F0F0", radius: 6 }} radius={[6, 6, 0, 0]}>
@@ -128,18 +147,20 @@ function InventoryCard() {
                   </Bar>
                 </BarChart>
               </ResponsiveContainer>
-              <p className="text-xs"><strong>{item.percent}%</strong> <span className="text-text-secondary">· {item.count.toLocaleString()}</span></p>
+              </div>
+              <p className="whitespace-nowrap text-[10px]"><strong>{item.percent}%</strong> <span className="text-text-secondary">· {item.count.toLocaleString()}</span></p>
             </div>
           );
         })}
       </div>
-      <div className="mt-5 grid gap-4 tablet:hidden">
+      ) : (
+      <div className="mt-5 grid gap-4">
         {inventory.map((item, index) => {
           const suffix = `h${index}`;
           return (
             <div key={item.name} className="grid grid-cols-[minmax(0,1fr)_130px] items-center gap-3">
-              <div className="h-8 min-w-0">
-                <ResponsiveContainer width="100%" height="100%">
+              <div className="h-8 min-h-8 min-w-0">
+                <ResponsiveContainer width="100%" height="100%" minHeight={32}>
                   <BarChart data={[item]} layout="vertical" margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
                     <PatternDefs suffix={suffix} /><XAxis type="number" domain={[0, 30]} hide /><YAxis type="category" dataKey="name" hide />
                     <Bar dataKey="percent" background={{ fill: "#F0F0F0", radius: 6 }} radius={[0, 6, 6, 0]}><Cell fill={inventoryFill(item.fill, suffix)} /></Bar>
@@ -151,6 +172,7 @@ function InventoryCard() {
           );
         })}
       </div>
+      )}
     </Card>
   );
 }
@@ -160,8 +182,8 @@ function CapacityCard() {
   return (
     <Card padding="lg" className="h-full border-action-dark bg-action-dark text-surface-card">
       <div className="flex justify-between"><h2 className="font-bold">Capacity Usage</h2><MenuButton label="Capacity usage menu" /></div>
-      <div className="relative mx-auto h-56 max-w-64">
-        <ResponsiveContainer width="100%" height="100%"><PieChart><Pie data={capacity} dataKey="value" innerRadius={67} outerRadius={90} startAngle={90} endAngle={-270} stroke="none"><Cell fill="#856DF3" /><Cell fill="#E0E0E0" /></Pie></PieChart></ResponsiveContainer>
+      <div className="relative mx-auto h-[220px] min-h-[220px] w-full max-w-64">
+        <ResponsiveContainer width="100%" height="100%" minHeight={220}><PieChart><Pie data={capacity} dataKey="value" innerRadius={67} outerRadius={90} startAngle={90} endAngle={-270} stroke="none"><Cell fill="#856DF3" /><Cell fill="#E0E0E0" /></Pie></PieChart></ResponsiveContainer>
         <div className="pointer-events-none absolute inset-0 grid place-content-center text-center"><span className="text-xs text-white/60">Total Usage</span><strong className="text-3xl">62.5%</strong></div>
       </div>
       <div className="grid grid-cols-2 gap-4 border-t border-white/20 pt-4">
