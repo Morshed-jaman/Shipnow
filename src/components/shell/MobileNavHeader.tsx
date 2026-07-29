@@ -8,7 +8,9 @@ import { ShipNowLogo } from "./ShipNowLogo";
 
 export function MobileNavHeader() {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const isDashboard = usePathname() === "/dashboard";
+  const pathname = usePathname();
+  const isDashboard = pathname === "/dashboard";
+  const isWarehouse = pathname === "/warehouse";
 
   const menuButton = (
     <button
@@ -33,7 +35,8 @@ export function MobileNavHeader() {
           </>
         ) : (
           <>
-            <ShipNowLogo className="mr-auto origin-left scale-90" />
+            <ShipNowLogo className={isWarehouse ? "origin-left scale-90" : "mr-auto origin-left scale-90"} />
+            {isWarehouse ? <span className="mr-auto text-lg font-bold text-text-primary">Warehouse</span> : null}
             {menuButton}
           </>
         )}
