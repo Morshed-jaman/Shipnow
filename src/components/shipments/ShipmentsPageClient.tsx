@@ -5,6 +5,7 @@ import { type Key, useMemo, useState } from "react";
 import type { TableSort } from "@/components/ui";
 import { KpiCards } from "./KpiCards";
 import { ShipmentsTable } from "./ShipmentsTable";
+import { ShipmentsGrid } from "./ShipmentsGrid";
 import { ViewToggle, type ShipmentView } from "./ViewToggle";
 import { shipments } from "@/data/shipments";
 
@@ -36,7 +37,7 @@ export function ShipmentsPageClient() {
         <ShipmentsTable rows={visible} total={sorted.length} sort={sort} onSortChange={(next) => { setSort(next); setPage(1); }}
           selected={selected} onSelectionChange={setSelected} page={page} pageSize={pageSize} onPageChange={setPage}
           onPageSizeChange={(size) => { setPageSize(size); setPage(1); }} emptyState="No shipments found" />
-      ) : <p className="rounded-card bg-surface-card p-8 text-center text-text-secondary">Grid view</p>}
+      ) : <ShipmentsGrid rows={visible} total={sorted.length} page={page} pageSize={pageSize} onPageChange={setPage} onPageSizeChange={(size) => { setPageSize(size); setPage(1); }} />}
     </div>
   );
 }
