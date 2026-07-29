@@ -32,6 +32,7 @@ export const colors = {
     success: "#007837",
     successLight: "#D9F9E7",
     warning: "#D97706",
+    warningLight: "#FEF1A7",
     error: "#F04A4A",
     neutral: "#757575",
     info: "#235BC2",

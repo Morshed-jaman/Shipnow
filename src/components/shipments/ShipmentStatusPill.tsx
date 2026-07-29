@@ -7,8 +7,8 @@ const styles: Record<ShipmentStatus, string> = {
   "In Transit": "bg-status-neutral/10 text-status-neutral",
   "Out for Delivery": "bg-brand-light text-brand-primary",
   Processing: "bg-status-info-light text-status-info",
-  Pending: "bg-[#FEF1A7] text-status-warning",
-  Delayed: "bg-[#FEF1A7] text-status-warning",
+  Pending: "bg-status-warning-light text-status-warning",
+  Delayed: "bg-status-warning-light text-status-warning",
 };
 
 export function ShipmentStatusPill({ status }: { status: ShipmentStatus }) {
