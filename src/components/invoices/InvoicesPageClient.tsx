@@ -4,14 +4,15 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowLeft,
-  CheckCircle2,
+  BadgeCheck,
   CircleDashed,
   Clock3,
   FileText,
   Plus,
+  Receipt,
   Search,
   Settings2,
-  SquareX,
+  X,
 } from "lucide-react";
 import { useMemo, useState, useSyncExternalStore } from "react";
 import { Card, Checkbox, Input } from "@/components/ui";
@@ -39,12 +40,23 @@ function useDesktopLayout() {
   return useSyncExternalStore(subscribeDesktop, () => window.matchMedia(desktopQuery).matches, () => false);
 }
 
-const kpiIcons = { paid: CheckCircle2, unpaid: SquareX, pending: CircleDashed, overdue: Clock3 };
 const statusStyles: Record<InvoiceStatus, string> = {
   Paid: "bg-status-success-light text-status-success",
   Unpaid: "bg-brand-light text-brand-dark",
   Overdue: "bg-surface-page text-text-secondary",
 };
+
+function KpiIcon({ type }: { type: (typeof invoiceKpis)[number]["icon"] }) {
+  if (type === "paid") return <BadgeCheck className="size-6" aria-hidden="true" />;
+  if (type === "pending") return <CircleDashed className="size-6" aria-hidden="true" />;
+  if (type === "overdue") return <Clock3 className="size-6" aria-hidden="true" />;
+  return (
+    <span className="relative">
+      <Receipt className="size-6" aria-hidden="true" />
+      <X className="absolute left-1/2 top-1/2 size-2.5 -translate-x-1/2 -translate-y-1/2" strokeWidth={3} aria-hidden="true" />
+    </span>
+  );
+}
 
 function InvoicesHeader({ query, onQueryChange }: { query: string; onQueryChange: (value: string) => void }) {
   return (
@@ -62,11 +74,10 @@ function InvoiceKpis() {
   return (
     <section aria-label="Invoice summary" className="grid grid-cols-2 gap-3 tablet:gap-5 desktop:grid-cols-4">
       {invoiceKpis.map((kpi) => {
-        const Icon = kpiIcons[kpi.icon];
         return (
           <Card key={kpi.label} padding="md" className="min-w-0">
             <div className="flex flex-col items-start gap-3 tablet:flex-row tablet:items-center">
-              <span className="rounded-control bg-brand-light p-2.5 text-brand-primary"><Icon className="size-5" /></span>
+              <span className="grid size-12 shrink-0 place-items-center rounded-control bg-brand-primary text-surface-card"><KpiIcon type={kpi.icon} /></span>
               <div className="min-w-0 tablet:ml-auto tablet:text-right">
                 <p className="text-xs text-text-secondary tablet:text-small">{kpi.label}</p>
                 <p className="mt-1 text-xl font-bold tablet:text-2xl">{formatCurrency(kpi.amount).replace(".00", "")}</p>
