@@ -13,14 +13,13 @@ import {
 import {
   ChevronDown,
   Ellipsis,
-  Package,
   Plane,
   Ship,
   SlidersHorizontal,
   TrainFront,
   Truck,
-  UserRound,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { Card } from "@/components/ui";
@@ -216,7 +215,7 @@ function PackageStatusCard() {
     <Card padding="lg" className="h-full">
       <div className="flex justify-between"><h2 className="font-bold">Package Status</h2><MenuButton label="Package status menu" /></div>
       <div role="tablist" aria-label="Package status" className="mt-4 flex flex-wrap gap-2">{statusTabs.map((tab) => <button key={tab} type="button" role="tab" aria-selected={active === tab} onClick={() => setActive(tab)} className={cn("rounded-full border border-border-default px-3 py-1.5 text-xs font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary", active === tab && "border-action-dark bg-action-dark text-surface-card")}>{tab}</button>)}</div>
-      <ul className="mt-4 divide-y divide-border-default">{visible.map((item) => <li key={item.id} className="flex items-center gap-3 py-4"><span className="rounded-control bg-brand-light p-2 text-brand-primary"><Package className="size-4" /></span><span className="min-w-0 flex-1"><strong className="block text-small">{item.id}</strong><span className="text-xs text-text-secondary">{item.date}</span></span><span className={cn("rounded-full px-2.5 py-1 text-xs font-semibold", styles[item.status])}>{item.status}</span></li>)}</ul>
+      <ul className="mt-4 divide-y divide-border-default">{visible.map((item) => <li key={item.id} className="flex items-center gap-3 py-4"><Image src="/warehouse-icons/pkg.png" alt={`${item.id} package`} width={38} height={38} className="size-[38px] shrink-0 object-contain" /><span className="min-w-0 flex-1"><strong className="block text-small">{item.id}</strong><span className="text-xs text-text-secondary">{item.date}</span></span><span className={cn("rounded-full px-2.5 py-1 text-xs font-semibold", styles[item.status])}>{item.status}</span></li>)}</ul>
     </Card>
   );
 }
@@ -236,7 +235,7 @@ function ActivityCard() {
   return (
     <Card padding="lg" className="h-full">
       <div className="flex justify-between"><h2 className="font-bold">Warehouse Activity Log</h2><MenuButton label="Warehouse activity menu" /></div>
-      <ul className="mt-4 divide-y divide-border-default">{activityLog.map((entry) => <li key={entry.name} className="flex gap-3 py-4"><span className="grid size-9 shrink-0 place-items-center rounded-full bg-brand-light text-brand-primary"><UserRound className="size-4" /></span><p className="text-small leading-relaxed"><strong className="text-brand-primary">{entry.name}</strong> {entry.text}<span className="mt-1 block text-xs text-text-secondary">{entry.time}</span></p></li>)}</ul>
+      <ul className="mt-4 divide-y divide-border-default">{activityLog.map((entry) => <li key={entry.name} className="flex gap-3 py-4"><Image src={entry.icon} alt={`${entry.name} activity icon`} width={34} height={34} className="size-[34px] shrink-0 object-contain" /><p className="text-small leading-relaxed"><strong className="text-brand-primary">{entry.name}</strong> {entry.text}<span className="mt-1 block text-xs text-text-secondary">{entry.time}</span></p></li>)}</ul>
     </Card>
   );
 }

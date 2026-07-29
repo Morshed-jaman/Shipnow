@@ -71,8 +71,8 @@ export const floors: Record<"Floor 1" | "Floor 2" | "Floor 3", MapSection[]> = {
 };
 
 export const activityLog = [
-  { name: "Leo Fernandez", text: "confirmed receipt of 40 units of Winter Jacket Series in Section B3 (Apparel)", time: "01:45 PM" },
-  { name: "Ava Martinez", text: "added 25 units of Smart Router Kit to Section A1 (Electronics)", time: "09:15 AM" },
-  { name: "Oscar Liem", text: "dispatched 18 units of Stainless Steel Cookware Set from Section C5 (Home & Kitchen)", time: "05:30 PM" },
-  { name: "Dina Choi", text: "created a shipment entry for Brake Pad Sets in Section D2 (Automotive Parts)", time: "04:10 PM" },
+  { name: "Leo Fernandez", icon: "/warehouse-icons/leo.png", text: "confirmed receipt of 40 units of Winter Jacket Series in Section B3 (Apparel)", time: "01:45 PM" },
+  { name: "Ava Martinez", icon: "/warehouse-icons/ava.png", text: "added 25 units of Smart Router Kit to Section A1 (Electronics)", time: "09:15 AM" },
+  { name: "Oscar Liem", icon: "/warehouse-icons/oscar.png", text: "dispatched 18 units of Stainless Steel Cookware Set from Section C5 (Home & Kitchen)", time: "05:30 PM" },
+  { name: "Dina Choi", icon: "/warehouse-icons/dina.png", text: "created a shipment entry for Brake Pad Sets in Section D2 (Automotive Parts)", time: "04:10 PM" },
 ];
