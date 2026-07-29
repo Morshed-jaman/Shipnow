@@ -27,7 +27,6 @@ function RouteRow({ label, place, date }: { label: string; place: string; date: 
 
 export function ShipmentCard({ shipment }: { shipment: Shipment }) {
   const FreightIcon = freightIcons[shipment.freightType];
-  const initials = shipment.company.split(/\s+/).map((part) => part[0]).slice(0, 2).join("");
 
   return (
     <Card padding="none" className="w-full min-w-0 max-w-full border border-border-default shadow-none">
@@ -43,7 +42,13 @@ export function ShipmentCard({ shipment }: { shipment: Shipment }) {
         </div>
 
         <div className="my-4 flex items-center gap-3">
-          <span className="grid size-10 shrink-0 place-items-center rounded-full bg-brand-light text-small font-bold text-brand-primary" aria-hidden="true">{initials}</span>
+          <img
+            src={shipment.logo}
+            alt={`${shipment.company} logo`}
+            width={36}
+            height={36}
+            className="h-9 w-9 shrink-0 object-contain"
+          />
           <span className="min-w-0">
             <strong className="block truncate text-small text-text-primary">{shipment.company}</strong>
             <span className="text-xs text-text-secondary">{shipment.category}</span>

@@ -15,6 +15,7 @@ export interface Shipment {
   id: string;
   freightType: FreightType;
   company: string;
+  logo: string;
   category: string;
   carrier: string;
   productCategory: string;
@@ -35,7 +36,35 @@ export interface Shipment {
   gridOrder: number;
 }
 
-type ShipmentSeed = Omit<Shipment, "items" | "date" | "atd" | "eta" | "sequence">;
+type ShipmentSeed = Omit<Shipment, "items" | "date" | "atd" | "eta" | "logo" | "sequence">;
+
+const companyLogos: Record<string, string> = {
+  "TechGear Inc.": "/company-logos/techgear.png",
+  "StyleHub Co.": "/company-logos/style.png",
+  FreshNest: "/company-logos/fresh.png",
+  "FitPlus Gear": "/company-logos/fitplus.png",
+  EcoLights: "/company-logos/eco.png",
+  "AutoParts Pro": "/company-logos/auto.png",
+  GreenHaven: "/company-logos/green.png",
+  ModaWear: "/company-logos/moda.png",
+  "SunCore Panels": "/company-logos/sun.png",
+  QuickParts: "/company-logos/quick.png",
+  VitaFresh: "/company-logos/vita.png",
+  StyleDepot: "/company-logos/styledepot.png",
+};
+
+const fallbackLogos = Object.values(companyLogos);
+
+function getCompanyLogo(company: string) {
+  const knownLogo = companyLogos[company];
+  if (knownLogo) return knownLogo;
+
+  const stableIndex = Array.from(company).reduce(
+    (hash, character) => (hash * 31 + character.codePointAt(0)!) >>> 0,
+    0,
+  );
+  return fallbackLogos[stableIndex % fallbackLogos.length];
+}
 
 const seeds: ShipmentSeed[] = [
   { id: "#SH9283746", company: "TechGear Inc.", category: "Electronics", carrier: "FedEx", productCategory: "Electronics", weight: 1200, origin: "Minneapolis, MN", destination: "Kansas City, MO", gridOrigin: "Los Angeles, CA", gridDestination: "Chicago, IL", progress: 60, gridProgress: 60, status: "Delivery", gridStatus: "In Transit", freightType: "Air Freight", gridOrder: 0 },
@@ -61,6 +90,7 @@ export const shipments: Shipment[] = Array.from({ length: 192 }, (_, index) => {
 
   return {
     ...seed,
+    logo: getCompanyLogo(seed.company),
     sequence: index,
     gridOrder: index < seeds.length ? seed.gridOrder : index,
     id: index < seeds.length ? seed.id : `#SH${String(9500000 + index).padStart(7, "0")}`,

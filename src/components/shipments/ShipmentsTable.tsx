@@ -16,7 +16,18 @@ const stacked = (top: ReactNode, bottom: ReactNode) => <div className="min-w-40"
 
 const columns: TableColumn<Shipment>[] = [
   { key: "id", header: "Shipping ID", sortable: true, render: (row) => stacked(<strong className="text-brand-primary">{row.id}</strong>, row.freightType) },
-  { key: "company", header: "Company", sortable: true, render: (row) => stacked(<strong>{row.company}</strong>, row.category) },
+  { key: "company", header: "Company", sortable: true, render: (row) => (
+    <div className="flex min-w-40 items-center gap-3">
+      <img
+        src={row.logo}
+        alt={`${row.company} logo`}
+        width={32}
+        height={32}
+        className="h-8 w-8 shrink-0 object-contain"
+      />
+      {stacked(<strong>{row.company}</strong>, row.category)}
+    </div>
+  ) },
   { key: "carrier", header: "Carriers", accessor: "carrier", sortable: true },
   { key: "productCategory", header: "Product Category", accessor: "productCategory", sortable: true, cellClassName: "min-w-40" },
   { key: "weight", header: "Weight", sortable: true, render: (row) => `${row.weight.toLocaleString()} kg`, cellClassName: "whitespace-nowrap" },
