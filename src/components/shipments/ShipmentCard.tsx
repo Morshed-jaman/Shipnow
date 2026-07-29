@@ -56,10 +56,10 @@ export function ShipmentCard({ shipment }: { shipment: Shipment }) {
         <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-4 border-t border-border-default pt-4">
           <div>
             <div className="mb-2 flex justify-between text-xs text-text-secondary">
-              <span>Progres</span><strong className="text-text-primary">{shipment.progress}%</strong>
+              <span>Progres</span><strong className="text-text-primary">{shipment.gridProgress}%</strong>
             </div>
-            <div className="h-1.5 overflow-hidden rounded-full bg-border-default" role="progressbar" aria-label={`${shipment.id} progress`} aria-valuenow={shipment.progress} aria-valuemin={0} aria-valuemax={100}>
-              <span className="block h-full rounded-full bg-brand-primary" style={{ width: `${shipment.progress}%` }} />
+            <div className="h-1.5 overflow-hidden rounded-full bg-border-default" role="progressbar" aria-label={`${shipment.id} progress`} aria-valuenow={shipment.gridProgress} aria-valuemin={0} aria-valuemax={100}>
+              <span className="block h-full rounded-full bg-brand-primary" style={{ width: `${shipment.gridProgress}%` }} />
             </div>
           </div>
           <div className="text-right text-xs text-text-secondary">

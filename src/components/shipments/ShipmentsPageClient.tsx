@@ -16,7 +16,7 @@ import type { ShipmentView } from "./ViewToggle";
 export function ShipmentsPageClient() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [tableSort, setTableSort] = useState<TableSort>({ key: "date", direction: "desc" });
+  const [tableSort, setTableSort] = useState<TableSort>({ key: "sequence", direction: "asc" });
   const [gridSort, setGridSort] = useState<GridSort>("newest");
   const [selected, setSelected] = useState<ReadonlySet<Key>>(new Set());
   const [page, setPage] = useState(1);
@@ -49,7 +49,9 @@ export function ShipmentsPageClient() {
     if (view === "grid") {
       return indexed.toSorted((a, b) => {
         if (gridSort === "company") return a.shipment.company.localeCompare(b.shipment.company);
-        return gridSort === "oldest" ? b.index - a.index : a.index - b.index;
+        return gridSort === "oldest"
+          ? b.shipment.gridOrder - a.shipment.gridOrder
+          : a.shipment.gridOrder - b.shipment.gridOrder;
       }).map(({ shipment }) => shipment);
     }
 
