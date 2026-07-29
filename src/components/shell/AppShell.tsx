@@ -18,9 +18,9 @@ export function AppShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
 
   return (
-    <div className="flex min-h-screen w-full flex-row bg-surface-page">
+    <div className="flex min-h-screen w-dvw min-w-full max-w-none self-stretch flex-row bg-surface-page">
       <Sidebar />
-      <div className="flex min-h-screen w-full min-w-0 flex-1 flex-col bg-surface-page tablet:pl-shell-rail lg:pl-shell-sidebar">
+      <div className="flex min-h-screen min-w-0 flex-1 flex-col bg-surface-page tablet:pl-shell-rail lg:pl-shell-sidebar">
         <TopBar
           pageTitle={getPageTitle(pathname)}
           primaryAction={{
