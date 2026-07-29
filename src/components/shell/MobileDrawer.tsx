@@ -1,12 +1,12 @@
 "use client";
 
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { X } from "lucide-react";
 import { GoProCard } from "./GoProCard";
 import { primaryNavigation, utilityNavigation } from "./navigation";
 import { SidebarNavItem } from "./SidebarNavItem";
+import { ShipNowLogo } from "./ShipNowLogo";
 import { UserCard } from "./UserCard";
 
 interface MobileDrawerProps {
@@ -72,13 +72,7 @@ export function MobileDrawer({ open, onClose }: MobileDrawerProps) {
         className="relative flex h-full w-[min(86vw,320px)] flex-col overflow-y-auto bg-surface-card p-5 shadow-xl"
       >
         <div className="flex items-center justify-between">
-          <Image
-            src="/logo-shipnow.svg"
-            alt="ShipNow"
-            width={132}
-            height={37}
-            className="h-auto"
-          />
+          <ShipNowLogo />
           <button
             ref={closeButtonRef}
             type="button"

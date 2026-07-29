@@ -4,6 +4,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { GoProCard } from "./GoProCard";
 import { primaryNavigation, utilityNavigation } from "./navigation";
+import { ShipNowLogo } from "./ShipNowLogo";
 import { SidebarNavItem } from "./SidebarNavItem";
 import { UserCard } from "./UserCard";
 
@@ -57,20 +58,15 @@ export function Sidebar() {
         <NavGroups compact />
       </aside>
 
-      <aside className="fixed inset-y-0 left-0 z-30 hidden w-shell-sidebar flex-col border-r border-border-default bg-surface-card p-5 lg:flex">
-        <Image
-          src="/logo-shipnow.svg"
-          alt="ShipNow"
-          width={142}
-          height={39}
-          className="h-auto"
-          priority
-        />
-        <div className="mt-6">
+      <aside className="fixed inset-y-0 left-0 z-30 hidden h-dvh w-shell-sidebar flex-col overflow-hidden border-r border-border-default bg-surface-card p-5 lg:flex">
+        <ShipNowLogo className="shrink-0" />
+        <div className="mt-6 shrink-0">
           <UserCard />
         </div>
-        <NavGroups />
-        <div className="mt-auto pt-5">
+        <div className="min-h-0 flex-1 overflow-y-auto pr-1">
+          <NavGroups />
+        </div>
+        <div className="shrink-0 pt-5">
           <GoProCard />
         </div>
       </aside>
