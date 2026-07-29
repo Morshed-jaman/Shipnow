@@ -12,14 +12,14 @@ export function BrandPanel() {
         className="mt-[127px] h-auto w-[168px] tablet:mt-[131px] tablet:w-[264px] lg:ml-[244px] lg:mt-[137px]"
       />
 
-      <div className="relative mt-[48px] h-[263px] w-[256px] tablet:mt-[38px] tablet:h-[443px] tablet:w-[448px] lg:ml-[155px] lg:mt-[41px]">
+      <div className="relative mt-[48px] h-[263px] w-[256px] max-w-full overflow-hidden tablet:mt-[38px] tablet:h-[443px] tablet:w-[448px] lg:ml-[155px] lg:mt-[41px]">
         <Image
           src="/login-hero-truck.jpg"
           alt="A delivery truck loaded with parcels"
           width={410}
           height={386}
           priority
-          className="absolute bottom-0 left-0 h-[220px] w-[234px] rounded-card object-cover tablet:h-login-truck-height tablet:w-login-truck-width"
+          className="absolute bottom-0 left-0 h-[220px] w-[234px] max-w-full rounded-card object-cover tablet:h-login-truck-height tablet:w-login-truck-width"
         />
         <Image
           src="/login-hero-phone.jpg"
@@ -27,7 +27,7 @@ export function BrandPanel() {
           width={179}
           height={228}
           priority
-          className="absolute right-0 top-0 h-[131px] w-[102px] rounded-control object-cover shadow-card tablet:h-login-phone-height tablet:w-login-phone-width"
+          className="absolute right-0 top-0 h-[131px] w-[102px] max-w-full rounded-control object-cover shadow-card tablet:h-login-phone-height tablet:w-login-phone-width"
         />
       </div>
 
