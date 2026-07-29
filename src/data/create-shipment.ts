@@ -22,7 +22,7 @@ export const createShipmentSchema = z.object({
   units: z.string().min(1),
   length: positiveNumber("Length must be greater than 0."),
   width: positiveNumber("Width must be greater than 0."),
-  height: positiveNumber("Height must be greater than 0."),
+  height: positiveNumber("Height must be greater than 0.").optional(),
   freightType: z.string().min(1),
   carrier: z.string().min(1),
   shippingMethod: z.string().min(1, "Shipping method is required."),

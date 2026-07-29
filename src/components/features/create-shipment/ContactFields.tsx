@@ -17,16 +17,18 @@ export function ContactFields({ form, prefix }: { form: CreateShipmentForm; pref
   return (
     <div className="grid min-w-0 gap-4">
       <Input label="Company" className="bg-surface-card" error={errors[company]?.message} {...register(company)} />
-      <Input label="Email" type="email" className="bg-surface-card" error={errors[email]?.message} {...register(email)} />
-      <fieldset>
-        <legend className="mb-2 text-small font-semibold text-text-primary">Phone Number</legend>
-        <div className="grid grid-cols-[88px_minmax(0,1fr)] gap-2">
-          <Select label="Country code" aria-label="Country code" className="bg-surface-card" containerClassName="[&>label]:sr-only" {...register(code)}>
-            {countryCodes.map((option) => <option key={option}>{option}</option>)}
-          </Select>
-          <Input label="Phone number" aria-label="Phone number" containerClassName="[&>label]:sr-only" className="bg-surface-card" error={errors[phone]?.message} {...register(phone)} />
-        </div>
-      </fieldset>
+      <div className="grid min-w-0 gap-4 tablet:grid-cols-2">
+        <Input label="Email" type="email" className="bg-surface-card" error={errors[email]?.message} {...register(email)} />
+        <fieldset className="min-w-0">
+          <legend className="mb-2 text-small font-semibold text-text-primary">Phone Number</legend>
+          <div className="grid grid-cols-[88px_minmax(0,1fr)] gap-2">
+            <Select label="Country code" aria-label="Country code" className="bg-surface-card" containerClassName="[&>label]:sr-only" {...register(code)}>
+              {countryCodes.map((option) => <option key={option}>{option}</option>)}
+            </Select>
+            <Input label="Phone number" aria-label="Phone number" containerClassName="[&>label]:sr-only" className="bg-surface-card" error={errors[phone]?.message} {...register(phone)} />
+          </div>
+        </fieldset>
+      </div>
       <Input
         label={prefix === "sender" ? "Pickup Address" : "Delivery Address"}
         placeholder={prefix === "recipient" ? "Street address, city, state/province, ZIP code" : undefined}

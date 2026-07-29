@@ -2,7 +2,6 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import {
   createShipmentDefaults,
@@ -24,17 +23,7 @@ export function CreateShipmentForm() {
     reValidateMode: "onChange",
     defaultValues: createShipmentDefaults,
   });
-  const { formState: { isSubmitting }, handleSubmit, reset, setError } = form;
-
-  const showFrameErrors = () => {
-    setError("deliveryAddress", { type: "required", message: "Address is required." });
-    setError("shippingMethod", { type: "required", message: "Shipping method is required." });
-  };
-
-  useEffect(() => {
-    setError("deliveryAddress", { type: "required", message: "Address is required." });
-    setError("shippingMethod", { type: "required", message: "Shipping method is required." });
-  }, [setError]);
+  const { formState: { isSubmitting }, handleSubmit, reset } = form;
 
   return (
     <form
@@ -57,10 +46,7 @@ export function CreateShipmentForm() {
       </div>
       <FormActions
         loading={isSubmitting}
-        onDelete={() => {
-          reset(createShipmentDefaults);
-          showFrameErrors();
-        }}
+        onDelete={() => reset(createShipmentDefaults)}
       />
     </form>
   );
