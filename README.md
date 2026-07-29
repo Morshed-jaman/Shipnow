@@ -41,3 +41,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 # Design assumptions
 
 - Create New Shipment shipping-method options were not included in the supplied frame transcription. The select uses Standard, Express, and Priority while preserving the specified empty “Select Method” error state.
+- The Shipments table displays the Figma copy “of 1,240 results” while using 192 generated mock records to produce 16 pages at the default page size of 12.

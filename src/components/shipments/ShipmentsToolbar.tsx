@@ -1,11 +1,10 @@
 import { Search, SlidersHorizontal } from "lucide-react";
 import { Checkbox, Input } from "@/components/ui";
 import { shipmentStatuses, type ShipmentStatus } from "@/data/shipments";
-import { ViewToggle, type ShipmentView } from "./ViewToggle";
 
-export function ShipmentsToolbar({ query, onQueryChange, statuses, onStatusToggle, view, onViewChange }: {
+export function ShipmentsToolbar({ query, onQueryChange, statuses, onStatusToggle }: {
   query: string; onQueryChange: (value: string) => void; statuses: ReadonlySet<ShipmentStatus>;
-  onStatusToggle: (status: ShipmentStatus) => void; view: ShipmentView; onViewChange: (view: ShipmentView) => void;
+  onStatusToggle: (status: ShipmentStatus) => void;
 }) {
   return (
     <div className="flex w-full min-w-0 max-w-full flex-col gap-3 tablet:flex-row tablet:items-center">
@@ -20,7 +19,6 @@ export function ShipmentsToolbar({ query, onQueryChange, statuses, onStatusToggl
             {shipmentStatuses.map((status) => <Checkbox key={status} label={status} checked={statuses.has(status)} onChange={() => onStatusToggle(status)} />)}
           </div>
         </details>
-        <ViewToggle view={view} onChange={onViewChange} />
       </div>
     </div>
   );
