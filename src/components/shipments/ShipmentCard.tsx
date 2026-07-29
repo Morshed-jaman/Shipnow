@@ -1,35 +1,73 @@
-import { ArrowRight, Ellipsis, MapPin, Truck } from "lucide-react";
+import { MapPin, Package, Plane, Ship, TrainFront, Truck } from "lucide-react";
 import { Card } from "@/components/ui";
-import type { Shipment } from "@/data/shipments";
+import type { FreightType, Shipment } from "@/data/shipments";
 import { ShipmentStatusPill } from "./ShipmentStatusPill";
 
-export function ShipmentCard({ shipment }: { shipment: Shipment }) {
+const freightIcons: Record<FreightType, typeof Plane> = {
+  "Air Freight": Plane,
+  "Road Freight": Truck,
+  "Ocean Freight": Ship,
+  "Rail Freight": TrainFront,
+};
+
+function RouteRow({ label, place, date }: { label: string; place: string; date: string }) {
   return (
-    <Card padding="none" className="w-full min-w-0 max-w-full">
-      <div className="relative m-3 h-28 overflow-hidden rounded-control bg-surface-input">
-        <svg viewBox="0 0 260 112" className="size-full" role="img" aria-label={`Route preview for ${shipment.id}`}>
-          <path d="M18 88 C75 18 150 102 242 24" fill="none" stroke="#E0E0E0" strokeWidth="18" />
-          <path d="M20 88 C76 22 150 98 240 24" fill="none" stroke="#856DF3" strokeWidth="3" strokeDasharray="7 5" />
-          <circle cx="20" cy="88" r="6" fill="#856DF3" /><circle cx="240" cy="24" r="6" fill="#FEFEFE" stroke="#333333" strokeWidth="3" />
-        </svg>
-        <Truck className="absolute left-1/2 top-1/2 size-6 -translate-y-1/2 text-brand-primary" />
-      </div>
-      <div className="p-4 pt-1">
-        <div className="flex items-start justify-between gap-2"><strong className="text-lg text-brand-primary">{shipment.id}</strong><ShipmentStatusPill status={shipment.status} /></div>
-        <p className="mt-3 font-semibold text-text-primary">{shipment.company}</p>
-        <p className="text-xs text-text-secondary">{shipment.category}</p>
-        <p className="mt-3 flex items-center gap-2 text-small text-text-secondary"><MapPin className="size-4 shrink-0" /><span className="min-w-0 break-words">{shipment.origin} → {shipment.destination}</span></p>
-        <div className="mt-3 grid grid-cols-2 gap-2 text-xs text-text-secondary">
-          <span>Carrier <strong className="block text-small text-text-primary">{shipment.carrier}</strong></span>
-          <span>Date <strong className="block text-small text-text-primary">{shipment.date}</strong></span>
-          <span>Weight <strong className="block text-small text-text-primary">{shipment.weight} kg</strong></span>
-          <span>Items <strong className="block text-small text-text-primary">{shipment.items}</strong></span>
+    <div className="flex items-start gap-3 border-t border-border-default py-3">
+      <span className="mt-1 rounded-full bg-brand-light p-1.5 text-brand-primary">
+        <MapPin className="size-3.5" aria-hidden="true" />
+      </span>
+      <span className="text-xs font-semibold text-text-secondary">{label}</span>
+      <span className="ml-auto min-w-0 text-right">
+        <strong className="block text-small text-text-primary">{place}</strong>
+        <span className="text-xs text-text-secondary">{date}</span>
+      </span>
+    </div>
+  );
+}
+
+export function ShipmentCard({ shipment }: { shipment: Shipment }) {
+  const FreightIcon = freightIcons[shipment.freightType];
+  const initials = shipment.company.split(/\s+/).map((part) => part[0]).slice(0, 2).join("");
+
+  return (
+    <Card padding="none" className="w-full min-w-0 max-w-full border border-border-default shadow-none">
+      <article className="p-4">
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <strong className="text-lg text-text-primary">{shipment.id}</strong>
+            <div className="mt-2"><ShipmentStatusPill status={shipment.gridStatus} /></div>
+          </div>
+          <span className="rounded-full bg-surface-input p-3 text-text-secondary">
+            <FreightIcon className="size-5" aria-label={shipment.freightType} />
+          </span>
         </div>
-        <div className="mt-4 flex items-center justify-between border-t border-border-default pt-3">
-          <button type="button" className="inline-flex items-center gap-1 text-small font-semibold text-brand-primary">View details <ArrowRight className="size-4" /></button>
-          <button type="button" aria-label={`Actions for ${shipment.id}`} className="rounded-control p-1 text-text-secondary"><Ellipsis className="size-5" /></button>
+
+        <div className="my-4 flex items-center gap-3">
+          <span className="grid size-10 shrink-0 place-items-center rounded-full bg-brand-light text-small font-bold text-brand-primary" aria-hidden="true">{initials}</span>
+          <span className="min-w-0">
+            <strong className="block truncate text-small text-text-primary">{shipment.company}</strong>
+            <span className="text-xs text-text-secondary">{shipment.category}</span>
+          </span>
         </div>
-      </div>
+
+        <RouteRow label="Origin" place={shipment.gridOrigin} date={shipment.atd} />
+        <RouteRow label="Destination" place={shipment.gridDestination} date={shipment.eta} />
+
+        <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-4 border-t border-border-default pt-4">
+          <div>
+            <div className="mb-2 flex justify-between text-xs text-text-secondary">
+              <span>Progres</span><strong className="text-text-primary">{shipment.progress}%</strong>
+            </div>
+            <div className="h-1.5 overflow-hidden rounded-full bg-border-default" role="progressbar" aria-label={`${shipment.id} progress`} aria-valuenow={shipment.progress} aria-valuemin={0} aria-valuemax={100}>
+              <span className="block h-full rounded-full bg-brand-primary" style={{ width: `${shipment.progress}%` }} />
+            </div>
+          </div>
+          <div className="text-right text-xs text-text-secondary">
+            <span>Carriers</span>
+            <strong className="mt-1 flex items-center justify-end gap-1 text-text-primary"><Package className="size-3.5" aria-hidden="true" />{shipment.carrier}</strong>
+          </div>
+        </div>
+      </article>
     </Card>
   );
 }

@@ -5,6 +5,7 @@ interface ShipmentsPaginationProps {
   page: number;
   pageSize: number;
   total: number;
+  resultsLabel: string;
   onPageChange: (page: number) => void;
   onPageSizeChange: (size: number) => void;
 }
@@ -13,6 +14,7 @@ export function ShipmentsPagination({
   page,
   pageSize,
   total,
+  resultsLabel,
   onPageChange,
   onPageSizeChange,
 }: ShipmentsPaginationProps) {
@@ -35,7 +37,7 @@ export function ShipmentsPagination({
             <option key={size}>{size}</option>
           ))}
         </select>
-        of 1,240 results
+        {resultsLabel}
       </label>
 
       <nav aria-label="Shipment pages" className="flex items-center gap-1">

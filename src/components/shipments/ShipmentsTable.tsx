@@ -41,5 +41,5 @@ export function ShipmentsTable(props: Props) {
   return <Table data={props.rows} columns={columns} getRowId={(row) => row.id} sort={props.sort} onSortChange={props.onSortChange}
     selectedRowIds={props.selected} onSelectionChange={props.onSelectionChange} emptyState={props.emptyState} caption="Shipments"
     className="w-full min-w-0 max-w-full shadow-none [&_thead]:bg-brand-light [&_thead]:text-text-primary"
-    pagination={<ShipmentsPagination page={props.page} pageSize={props.pageSize} total={props.total} onPageChange={props.onPageChange} onPageSizeChange={props.onPageSizeChange} />} />;
+    pagination={<ShipmentsPagination page={props.page} pageSize={props.pageSize} total={props.total} resultsLabel="of 1,240 results" onPageChange={props.onPageChange} onPageSizeChange={props.onPageSizeChange} />} />;
 }
