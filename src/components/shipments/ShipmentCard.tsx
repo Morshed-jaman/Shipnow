@@ -5,7 +5,7 @@ import { ShipmentStatusPill } from "./ShipmentStatusPill";
 
 export function ShipmentCard({ shipment }: { shipment: Shipment }) {
   return (
-    <Card padding="none" className="min-w-0">
+    <Card padding="none" className="w-full min-w-0 max-w-full">
       <div className="relative m-3 h-28 overflow-hidden rounded-control bg-surface-input">
         <svg viewBox="0 0 260 112" className="size-full" role="img" aria-label={`Route preview for ${shipment.id}`}>
           <path d="M18 88 C75 18 150 102 242 24" fill="none" stroke="#E0E0E0" strokeWidth="18" />

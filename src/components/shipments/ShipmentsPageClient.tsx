@@ -42,15 +42,15 @@ export function ShipmentsPageClient() {
   const clearFilters = () => { setQuery(""); setStatuses(new Set()); setPage(1); };
   const emptyState = <EmptyState onClear={clearFilters} />;
   return (
-    <div className="grid w-full min-w-0 max-w-full gap-5">
+    <div className="grid min-h-full w-full min-w-0 max-w-full justify-self-stretch bg-surface-page gap-5">
       <h1 className="sr-only">Shipments</h1>
       {view === "table" ? <KpiCards shipments={shipments} /> : null}
       {view === "table" ? (
-        <section className="min-w-0 overflow-hidden rounded-card bg-surface-card p-4 shadow-card">
+        <section className="w-full min-w-0 max-w-full justify-self-stretch overflow-hidden rounded-card bg-surface-card p-4 shadow-card">
           <ShipmentsToolbar query={query} onQueryChange={(value) => { setQuery(value); setPage(1); }} statuses={statuses}
             onStatusToggle={(status) => { setStatuses((current) => { const next = new Set(current); if (next.has(status)) next.delete(status); else next.add(status); return next; }); setPage(1); }}
             view={view} onViewChange={setView} />
-          <div className="mt-4 min-w-0">
+          <div className="mt-4 w-full min-w-0 max-w-full">
             <ShipmentsTable rows={visible} total={sorted.length} sort={sort} onSortChange={(next) => { setSort(next); setPage(1); }}
               selected={selected} onSelectionChange={setSelected} page={page} pageSize={pageSize} onPageChange={setPage}
               onPageSizeChange={(size) => { setPageSize(size); setPage(1); }} emptyState={emptyState} />
@@ -62,7 +62,7 @@ export function ShipmentsPageClient() {
             onStatusToggle={(status) => { setStatuses((current) => { const next = new Set(current); if (next.has(status)) next.delete(status); else next.add(status); return next; }); setPage(1); }}
             view={view} onViewChange={setView} />
           {sorted.length ? <ShipmentsGrid rows={visible} total={sorted.length} page={page} pageSize={pageSize} onPageChange={setPage} onPageSizeChange={(size) => { setPageSize(size); setPage(1); }} />
-            : <div className="rounded-card bg-surface-card"><EmptyState onClear={clearFilters} /></div>}
+            : <div className="w-full max-w-full rounded-card bg-surface-card"><EmptyState onClear={clearFilters} /></div>}
         </>
       )}
     </div>

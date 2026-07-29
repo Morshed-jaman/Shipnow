@@ -10,9 +10,9 @@ export function KpiCards({ shipments }: { shipments: Shipment[] }) {
     { label: "Pending or Delayed", value: shipments.filter((s) => s.status === "Pending" || s.status === "Delayed").length, icon: Clock3, note: "Needs attention" },
   ];
   return (
-    <section aria-label="Shipment summary" className="grid min-w-0 gap-5 tablet:grid-cols-2 lg:grid-cols-4">
+    <section aria-label="Shipment summary" className="grid w-full min-w-0 max-w-full grid-cols-1 gap-5 tablet:grid-cols-2 lg:grid-cols-4">
       {kpis.map(({ label, value, icon: Icon, note }) => (
-        <Card key={label} className="min-w-0" padding="lg">
+        <Card key={label} className="w-full min-w-0 max-w-full" padding="lg">
           <div className="flex items-start justify-between"><div><p className="text-small text-text-secondary">{label}</p><p className="mt-1 text-3xl font-bold text-text-primary">{value}</p></div><span className="rounded-control bg-brand-light p-2 text-brand-primary"><Icon className="size-5" /></span></div>
           <p className="mt-2 text-xs text-text-secondary">{note}</p>
         </Card>

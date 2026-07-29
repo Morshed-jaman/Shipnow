@@ -8,7 +8,7 @@ export function ShipmentsToolbar({ query, onQueryChange, statuses, onStatusToggl
   onStatusToggle: (status: ShipmentStatus) => void; view: ShipmentView; onViewChange: (view: ShipmentView) => void;
 }) {
   return (
-    <div className="flex min-w-0 flex-col gap-3 tablet:flex-row tablet:items-center">
+    <div className="flex w-full min-w-0 max-w-full flex-col gap-3 tablet:flex-row tablet:items-center">
       <Input label="Search shipments" aria-label="Search shipments" placeholder="Search shipment" value={query} onChange={(event) => onQueryChange(event.target.value)}
         leftAdornment={<Search className="size-4" />} containerClassName="w-full min-w-0 tablet:max-w-[431px]" className="bg-surface-input" />
       <div className="flex items-center gap-3 tablet:ml-auto">
