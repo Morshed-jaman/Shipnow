@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Menu } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -11,6 +12,7 @@ export function MobileNavHeader() {
   const pathname = usePathname();
   const isDashboard = pathname === "/dashboard";
   const isWarehouse = pathname === "/warehouse";
+  const isInvoices = pathname === "/invoices";
 
   const menuButton = (
     <button
@@ -32,6 +34,12 @@ export function MobileNavHeader() {
           <>
             {menuButton}
             <span className="ml-3 text-lg font-bold text-text-primary">Dashboard</span>
+          </>
+        ) : isInvoices ? (
+          <>
+            <Image src="/logo-symbol.svg" alt="ShipNow" width={32} height={32} className="size-8 shrink-0" priority />
+            <span className="ml-2 mr-auto truncate text-lg font-bold text-text-primary">Invoices &amp; Billing</span>
+            {menuButton}
           </>
         ) : (
           <>
