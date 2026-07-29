@@ -1,4 +1,5 @@
 import { z } from "zod";
+import type { DefaultValues } from "react-hook-form";
 
 const positiveNumber = (message: string) =>
   z.coerce.number().positive(message);
@@ -37,7 +38,7 @@ export const createShipmentSchema = z.object({
 
 export type CreateShipmentValues = z.infer<typeof createShipmentSchema>;
 
-export const createShipmentDefaults: CreateShipmentValues = {
+export const createShipmentDefaults = {
   senderCompany: "GreenHaven",
   senderEmail: "logistics@greenhaven.com",
   senderCountryCode: "+1",
@@ -55,7 +56,7 @@ export const createShipmentDefaults: CreateShipmentValues = {
   units: "Kg",
   length: 80,
   width: 60,
-  height: 0,
+  height: undefined,
   freightType: "Road Freight",
   carrier: "FedEx",
   shippingMethod: "",
@@ -67,7 +68,7 @@ export const createShipmentDefaults: CreateShipmentValues = {
   temperatureControl: true,
   fragileItemHandling: false,
   notifyRecipient: true,
-};
+} satisfies DefaultValues<CreateShipmentValues>;
 
 export const countryCodes = ["+1"] as const;
 export const unitOptions = ["Kg"] as const;
