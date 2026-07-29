@@ -1,29 +1,23 @@
-import { BriefcaseBusiness, Camera, MessageCircle, Play, Send } from "lucide-react";
-
-const socialLinks = [
-  { label: "Facebook", icon: MessageCircle },
-  { label: "X", icon: Send },
-  { label: "Instagram", icon: Camera },
-  { label: "YouTube", icon: Play },
-  { label: "LinkedIn", icon: BriefcaseBusiness },
-];
+import Image from "next/image";
 
 export function DashboardFooter() {
   return (
-    <footer className="flex flex-col items-center justify-between gap-4 border-t border-border-default py-5 text-center text-small text-text-secondary tablet:flex-row">
-      <p>Copyright © 2025 Peterdraw</p>
-      <nav aria-label="Legal">
-        <span>Privacy Policy</span><span aria-hidden="true"> · </span>
-        <span>Term and conditions</span><span aria-hidden="true"> · </span>
-        <span>Contact</span>
-      </nav>
-      <div className="flex gap-2">
-        {socialLinks.map(({ label, icon: Icon }) => (
-          <button key={label} type="button" aria-label={label} className="rounded-control p-1.5 hover:bg-surface-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary">
-            <Icon className="size-4" aria-hidden="true" />
-          </button>
-        ))}
+    <footer className="flex flex-col items-center justify-between gap-5 border-t border-border-default py-6 text-center tablet:flex-row">
+      <div>
+        <p className="text-body font-bold text-text-primary">Copyright © 2025 Peterdraw</p>
+        <nav aria-label="Legal" className="mt-3 flex flex-wrap justify-center gap-x-6 gap-y-2 text-small text-text-secondary">
+          <span>Privacy Policy</span>
+          <span>Term and conditions</span>
+          <span>Contact</span>
+        </nav>
       </div>
+      <Image
+        src="/social-media.png"
+        alt="Facebook, X, Instagram, YouTube, and LinkedIn"
+        width={148}
+        height={20}
+        className="h-5 w-[148px] object-contain"
+      />
     </footer>
   );
 }
