@@ -3,12 +3,9 @@ import { cn } from "@/lib/cn";
 import type { ShipmentStatus } from "@/data/shipments";
 
 const styles: Record<ShipmentStatus, string> = {
-  Delivered: "bg-status-success-light text-status-success",
-  "In Transit": "bg-status-neutral/10 text-status-neutral",
-  "Out for Delivery": "bg-brand-light text-brand-primary",
-  Processing: "bg-status-info-light text-status-info",
+  Completed: "bg-status-success-light text-status-success",
+  Delivery: "bg-brand-light text-brand-primary",
   Pending: "bg-status-warning-light text-status-warning",
-  Delayed: "bg-status-warning-light text-status-warning",
 };
 
 export function ShipmentStatusPill({ status }: { status: ShipmentStatus }) {

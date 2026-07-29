@@ -1,28 +1,51 @@
-export const shipmentStatuses = ["Delivered", "In Transit", "Out for Delivery", "Processing", "Pending", "Delayed"] as const;
+export const shipmentStatuses = ["Delivery", "Completed", "Pending"] as const;
 export type ShipmentStatus = (typeof shipmentStatuses)[number];
+export type FreightType = "Air Freight" | "Road Freight" | "Ocean Freight" | "Rail Freight";
 
 export interface Shipment {
-  id: string; company: string; category: string; carrier: string;
-  origin: string; destination: string; weight: number; items: number;
-  date: string; status: ShipmentStatus;
+  id: string;
+  freightType: FreightType;
+  company: string;
+  category: string;
+  carrier: string;
+  productCategory: string;
+  origin: string;
+  destination: string;
+  weight: number;
+  items: number;
+  date: string;
+  atd: string;
+  eta: string;
+  progress: number;
+  status: ShipmentStatus;
 }
 
-export const shipments: Shipment[] = [
-  ["#SH9283746","TechGear Inc.","Electronics","FedEx","Los Angeles, CA","Chicago, IL",184,12,"Mar 20, 2035","In Transit"],
-  ["#SH9182635","StyleHub Co.","Apparel","DHL","New York, NY","Atlanta, GA",92,28,"Mar 19, 2035","Out for Delivery"],
-  ["#SH9037821","FreshNest","Home & Kitchen","UPS","Dallas, TX","Miami, FL",215,16,"Mar 18, 2035","Delivered"],
-  ["#SH9374652","FitPlus Gear","Sports & Outdoors","USPS","Seattle, WA","Denver, CO",128,22,"Mar 21, 2035","Processing"],
-  ["#SH9457830","AutoParts Pro","Automotive","Aramex","Detroit, MI","San Diego, CA",460,9,"Mar 20, 2035","In Transit"],
-  ["#SH9562184","GlowWell Labs","Beauty & Health","DHL","Boston, MA","Austin, TX",74,36,"Mar 22, 2035","Pending"],
-  ["#SH9614073","HomeCraft Living","Home & Kitchen","FedEx","Portland, OR","Phoenix, AZ",248,18,"Mar 23, 2035","Delayed"],
-  ["#SH9728351","Circuit Works","Electronics","UPS","San Jose, CA","Houston, TX",165,14,"Mar 24, 2035","Delivered"],
-  ["#SH9841267","Urban Thread","Apparel","USPS","Philadelphia, PA","Nashville, TN",68,42,"Mar 25, 2035","Processing"],
-  ["#SH9903472","Peak Athletics","Sports & Outdoors","Aramex","Denver, CO","Charlotte, NC",132,20,"Mar 26, 2035","Out for Delivery"],
-  ["#SH9015846","MotorLine Supply","Automotive","FedEx","Cleveland, OH","Las Vegas, NV",510,7,"Mar 27, 2035","Pending"],
-  ["#SH9127604","PureCare Co.","Beauty & Health","DHL","Orlando, FL","Richmond, VA",58,30,"Mar 28, 2035","Delivered"],
-  ["#SH9234185","Nexa Devices","Electronics","UPS","Raleigh, NC","Minneapolis, MN",143,11,"Mar 29, 2035","In Transit"],
-  ["#SH9345028","Kitchen Story","Home & Kitchen","USPS","Memphis, TN","Sacramento, CA",276,19,"Mar 30, 2035","Delayed"],
-  ["#SH9472160","Mode & Co.","Apparel","Aramex","Brooklyn, NY","New Orleans, LA",81,34,"Mar 31, 2035","Pending"],
-].map(([id,company,category,carrier,origin,destination,weight,items,date,status]) => ({
-  id, company, category, carrier, origin, destination, weight, items, date, status,
-})) as Shipment[];
+const seeds: Omit<Shipment, "id" | "items" | "date" | "atd" | "eta">[] = [
+  { company: "TechGear Inc.", category: "Electronics", carrier: "FedEx", productCategory: "Electronics", weight: 1200, origin: "Minneapolis, MN", destination: "Kansas City, MO", progress: 60, status: "Delivery", freightType: "Air Freight" },
+  { company: "StyleHub Co.", category: "Apparel", carrier: "DHL", productCategory: "Apparel", weight: 850, origin: "New York, NY", destination: "Atlanta, GA", progress: 75, status: "Delivery", freightType: "Road Freight" },
+  { company: "FreshNest", category: "Home & Kitchen", carrier: "UPS", productCategory: "Kitchen Appliances", weight: 1450, origin: "Dallas, TX", destination: "Miami, FL", progress: 100, status: "Completed", freightType: "Ocean Freight" },
+  { company: "FitPlus Gear", category: "Sports & Outdoors", carrier: "USPS", productCategory: "Fitness Equipment", weight: 960, origin: "Seattle, WA", destination: "Denver, CO", progress: 40, status: "Pending", freightType: "Rail Freight" },
+  { company: "AutoParts Pro", category: "Automotive", carrier: "Aramex", productCategory: "Engine Components", weight: 1680, origin: "Detroit, MI", destination: "San Diego, CA", progress: 50, status: "Delivery", freightType: "Road Freight" },
+  { company: "EcoLights", category: "Home Improvement", carrier: "Local Courier", productCategory: "Lighting", weight: 720, origin: "Austin, TX", destination: "Phoenix, AZ", progress: 90, status: "Delivery", freightType: "Road Freight" },
+  { company: "GreenHaven", category: "Garden", carrier: "FedEx", productCategory: "Garden Tools", weight: 1250, origin: "Portland, OR", destination: "Boston, MA", progress: 30, status: "Pending", freightType: "Rail Freight" },
+  { company: "ModaWear", category: "Apparel", carrier: "DHL", productCategory: "Fashion", weight: 680, origin: "Chicago, IL", destination: "Nashville, TN", progress: 100, status: "Completed", freightType: "Air Freight" },
+  { company: "SunCore Panels", category: "Energy", carrier: "UPS", productCategory: "Solar Equipment", weight: 2100, origin: "San Jose, CA", destination: "Houston, TX", progress: 65, status: "Delivery", freightType: "Ocean Freight" },
+  { company: "VitaFresh", category: "Food & Beverage", carrier: "USPS", productCategory: "Fresh Produce", weight: 1100, origin: "Orlando, FL", destination: "Richmond, VA", progress: 100, status: "Completed", freightType: "Road Freight" },
+  { company: "StyleDepot", category: "Apparel", carrier: "Aramex", productCategory: "Clothing", weight: 780, origin: "Brooklyn, NY", destination: "New Orleans, LA", progress: 20, status: "Pending", freightType: "Air Freight" },
+];
+
+const ids = ["#SH9283746", "#SH9182635", "#SH9037821", "#SH9374652", "#SH9457830"];
+
+export const shipments: Shipment[] = Array.from({ length: 192 }, (_, index) => {
+  const seed = seeds[index % seeds.length];
+  const day = (index % 27) + 1;
+  const nextDay = Math.min(day + 3, 31);
+  return {
+    ...seed,
+    id: ids[index] ?? `#SH${String(9500000 + index).padStart(7, "0")}`,
+    items: 8 + (index % 36),
+    date: `Mar ${day}, 2035`,
+    atd: `Mar ${day}, 2035 – ${String(8 + (index % 9)).padStart(2, "0")}:30`,
+    eta: `Mar ${nextDay}, 2035 – ${String(10 + (index % 8)).padStart(2, "0")}:00`,
+  };
+});
