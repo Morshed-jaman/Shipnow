@@ -12,10 +12,10 @@ export function ShipmentsHeader({ view, onViewChange }: { view: ShipmentView; on
         </nav>
       </div>
       <div className="flex items-center gap-3">
+        <ViewToggle view={view} onChange={onViewChange} />
         <Link href="/shipments/new" className="inline-flex h-10 items-center gap-2 rounded-control bg-action-dark px-4 text-small font-semibold text-surface-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary">
           <Plus className="size-4" aria-hidden="true" /> New Shipment
         </Link>
-        <ViewToggle view={view} onChange={onViewChange} />
       </div>
     </header>
   );

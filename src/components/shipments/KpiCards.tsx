@@ -4,10 +4,10 @@ import { cn } from "@/lib/cn";
 
 export function KpiCards() {
   const kpis = [
-    { label: "Total Shipments", value: "1,284", icon: PackageCheck, note: "Up by 4.6% this week", up: true },
-    { label: "Pending", value: "285", icon: Clock3, note: "Up by 8.7% this week", up: true },
-    { label: "Delivery", value: "594", icon: Truck, note: "Down 4.2% from last week", up: false },
-    { label: "Completed", value: "405", icon: CheckCircle2, note: "Up by 3.9% this week", up: true },
+    { label: "Total Shipments", value: "1,284", icon: PackageCheck, note: "4.6% this week", up: true },
+    { label: "Pending", value: "285", icon: Clock3, note: "8.7%", up: true },
+    { label: "Delivery", value: "594", icon: Truck, note: "4.2% from last week", up: false },
+    { label: "Completed", value: "405", icon: CheckCircle2, note: "3.9%", up: true },
   ];
   return (
     <section aria-label="Shipment summary" className="grid w-full min-w-0 max-w-full grid-cols-1 gap-5 tablet:grid-cols-2 lg:grid-cols-4">
