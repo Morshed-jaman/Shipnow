@@ -29,7 +29,7 @@ export function MobileNavHeader() {
 
   return (
     <>
-      <header className="flex h-16 items-center border-b border-border-default bg-surface-card px-4 tablet:hidden">
+      <header className="sticky top-0 z-40 flex h-16 items-center border-b border-border-default bg-surface-card px-4 tablet:hidden">
         {isDashboard ? (
           <>
             {menuButton}
