@@ -5,6 +5,7 @@ import "./globals.css";
 const nunitoSans = Nunito_Sans({
   variable: "--font-nunito-sans",
   subsets: ["latin"],
+  preload: false,
 });
 
 export const metadata: Metadata = {

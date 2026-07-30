@@ -27,7 +27,7 @@ export function BrandPanel() {
           width={179}
           height={228}
           priority
-          className="absolute right-0 top-0 h-[131px] w-[102px] max-w-full rounded-control object-cover shadow-card tablet:h-login-phone-height tablet:w-login-phone-width"
+          className="absolute right-0 top-0 h-[131px] w-auto rounded-control object-cover shadow-card tablet:h-login-phone-height"
         />
       </div>
 

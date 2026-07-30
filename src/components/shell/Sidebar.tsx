@@ -47,14 +47,9 @@ export function Sidebar() {
   return (
     <>
       <aside className="fixed inset-y-0 left-0 z-30 hidden w-shell-rail flex-col border-r border-border-default bg-surface-card px-3 py-6 tablet:flex lg:hidden">
-        <Image
-          src="/logo-symbol.svg"
-          alt="ShipNow"
-          width={40}
-          height={40}
-          className="mx-auto size-10"
-          priority
-        />
+        <div className="border-b border-border-default pb-4">
+          <Image src="/avatar-john.png" alt="John Doe" width={32} height={32} className="mx-auto size-8 rounded-full object-cover" priority />
+        </div>
         <NavGroups compact />
       </aside>
 
