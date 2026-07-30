@@ -26,7 +26,21 @@ export function ShippingDetailsSection({ form }: { form: CreateShipmentForm }) {
           {shippingMethodOptions.map((option) => <option key={option}>{option}</option>)}
         </Select>
         <Input label="Shipment ID" readOnly placeholder="#SH9583742" helperText="Auto-generated" className="bg-surface-page" {...register("shipmentId")} />
-        <Input label="Shipment Date" type="date" leftAdornment={<CalendarDays className="size-4" />} error={errors.shipmentDate?.message} {...register("shipmentDate")} />
+        <Controller
+          control={control}
+          name="shipmentDate"
+          render={({ field }) => (
+            <Input
+              label="Shipment Date"
+              readOnly
+              value={new Date(`${field.value}T00:00:00`).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
+              rightAdornment={<CalendarDays className="size-4" />}
+              error={errors.shipmentDate?.message}
+              onBlur={field.onBlur}
+              ref={field.ref}
+            />
+          )}
+        />
         <Textarea label="Notes" placeholder="Add special delivery notes (optional)" containerClassName="tablet:col-span-2" className="min-h-[108px]" {...register("notes")} />
       </div>
     </section>

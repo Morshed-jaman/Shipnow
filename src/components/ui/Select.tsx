@@ -30,7 +30,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
   ) => {
     const generatedId = useId();
     const selectId = id ?? generatedId;
-    const descriptionId = `${selectId}-description`;
+    const descriptionId = error ? `${selectId}-error` : `${selectId}-description`;
 
     return (
       <div className={cn("grid gap-2", containerClassName)}>
@@ -45,7 +45,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
             aria-describedby={error || helperText ? descriptionId : undefined}
             className={cn(
               "h-10 w-full appearance-none rounded-control border border-border-default bg-surface-input px-3 pr-10 text-body text-text-primary outline-none transition focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 disabled:cursor-not-allowed disabled:opacity-50",
-              error && "border-status-error focus:border-status-error focus:ring-status-error/20",
+              error && "border-brand-primary ring-1 ring-brand-primary focus:border-brand-primary focus:ring-brand-primary",
               className,
             )}
             {...props}
@@ -60,7 +60,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
         {error || helperText ? (
           <p
             id={descriptionId}
-            className={cn("text-small text-text-secondary", error && "text-status-error")}
+            className={cn("text-small text-text-secondary", error && "text-brand-primary")}
           >
             {error ?? helperText}
           </p>

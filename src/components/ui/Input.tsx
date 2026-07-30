@@ -33,7 +33,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
   ) => {
     const generatedId = useId();
     const inputId = id ?? generatedId;
-    const descriptionId = `${inputId}-description`;
+    const descriptionId = error ? `${inputId}-error` : `${inputId}-description`;
 
     return (
       <div className={cn("grid gap-2", containerClassName)}>
@@ -55,7 +55,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               "h-10 w-full rounded-control border border-border-default bg-surface-input px-3 text-body text-text-primary outline-none transition placeholder:text-text-secondary focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 disabled:cursor-not-allowed disabled:opacity-50",
               leftAdornment && "pl-10",
               rightAdornment && "pr-10",
-              error && "border-status-error focus:border-status-error focus:ring-status-error/20",
+              error && "border-brand-primary ring-1 ring-brand-primary focus:border-brand-primary focus:ring-brand-primary",
               className,
             )}
             {...props}
@@ -69,7 +69,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {error || helperText ? (
           <p
             id={descriptionId}
-            className={cn("text-small text-text-secondary", error && "text-status-error")}
+            className={cn("text-small text-text-secondary", error && "text-brand-primary")}
           >
             {error ?? helperText}
           </p>

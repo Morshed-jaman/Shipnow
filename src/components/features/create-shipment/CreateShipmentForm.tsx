@@ -2,6 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import {
   createShipmentDefaults,
@@ -19,11 +20,15 @@ export function CreateShipmentForm() {
   const router = useRouter();
   const form = useForm<CreateShipmentValues>({
     resolver: zodResolver(createShipmentSchema),
-    mode: "onTouched",
+    mode: "onChange",
     reValidateMode: "onChange",
     defaultValues: createShipmentDefaults,
   });
   const { formState: { isSubmitting }, handleSubmit, reset } = form;
+
+  useEffect(() => {
+    void form.trigger(["deliveryAddress", "shippingMethod"]);
+  }, [form]);
 
   return (
     <form
