@@ -22,7 +22,7 @@ The interface targets desktop (`1440px`), tablet (`768px`), and mobile (`375px`)
 ## Links
 
 - **Repository:** [github.com/Morshed-jaman/Shipnow](https://github.com/Morshed-jaman/Shipnow)
-- **Live demo:** _Add the deployment URL after publishing_
+- **Live demo:** [shipnow-one.vercel.app](https://shipnow-one.vercel.app/)
 
 ## Highlights
 
