@@ -198,10 +198,26 @@ Application content lives in `src/data/`. Shipment records, invoice details, cha
 - Keyboard-operable invoice rows and tabs
 - Real DOM `indeterminate` state for partially selected tables
 
+## Screens — Status
+
+| Screen | Route | Desktop 1440 | Tablet 768 | Mobile 375 | Notes |
+| --- | --- | --- | --- | --- | --- |
+| Login | `/login` | Complete | Complete | Complete | Split-screen layout, Zod validation, show/hide password, simulated session |
+| Dashboard | `/dashboard` | Complete | Complete | Complete | Metric cards, Recharts bar/grouped-bar/donut charts, live tracking panel, alerts, recent shipments, activity timeline |
+| Shipments — Table & Grid | `/shipments` | Complete | Complete | Complete | Single route with `?view=` switcher, sorting, row selection, search, status tabs, pagination with page-size selector |
+| Create New Shipment | `/shipments/new` | Complete | Complete | Complete | Multi-section form, Figma error state reproduced, live React Hook Form + Zod validation |
+| Invoices & Billing | `/invoices` | Complete | Complete | Complete | Master-detail, 11 seeded invoices, totals computed from line items |
+| Warehouse | `/warehouse` | Complete | Complete | Complete | Summary stats, charts, storage table, package status list, interactive floor map with working floor tabs, activity log |
+| Analytics, Calendar, Tracking, Fleets, Drivers | `/[section]` | Placeholder | Placeholder | Placeholder | Rendered and styled as navigation entries per §4.2; each routes to a styled placeholder page |
+
 ## Known Issues & Assumptions
 
 - **Frontend only:** Authentication uses `localStorage`; data and submissions are not persisted.
-- **Phone number country selector:** The phone number country selector is presented as a static US (+1) prefix, matching the Figma design. All seed data uses US numbers and the assignment brief does not require a country picker.
+- The Shipments toolbar Filter and date-range controls are rendered as visual affordances to match the Figma design but do not apply filtering. Status tabs, search, sorting, row selection, and pagination are all fully functional.
+- The page footer is rendered by each screen rather than from the shared app shell. The footer markup itself exists in a single shared component and is not duplicated.
+- Some chart colours are set as literal hex values in Recharts configuration, where Tailwind utility classes cannot be applied. All other colours use the central design tokens defined in `src/app/globals.css`.
+- Domain component folders are organised inconsistently: `create-shipment` sits under `src/components/features/` while `invoices` and `warehouse` are direct children of `src/components/`.
+- The phone number country selector is presented as a static US (+1) prefix, matching the Figma design. All seed data uses US numbers and the brief does not require a country picker.
 - **Displayed shipment totals:** The table displays `1,240` results and the grid displays `520` to match Figma copy, while both use 192 generated records.
 - **Shipping methods:** The source transcription did not specify options, so the form uses Standard, Express, and Priority while preserving the required empty state.
 - **Invoice KPI totals:** `350 / 120 / 80 / 245` are design labels and intentionally do not equal the 11 seeded invoices.
