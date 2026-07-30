@@ -198,9 +198,10 @@ Application content lives in `src/data/`. Shipment records, invoice details, cha
 - Keyboard-operable invoice rows and tabs
 - Real DOM `indeterminate` state for partially selected tables
 
-## Known Limitations and Assumptions
+## Known Issues & Assumptions
 
 - **Frontend only:** Authentication uses `localStorage`; data and submissions are not persisted.
+- **Phone number country selector:** The phone number country selector is presented as a static US (+1) prefix, matching the Figma design. All seed data uses US numbers and the assignment brief does not require a country picker.
 - **Displayed shipment totals:** The table displays `1,240` results and the grid displays `520` to match Figma copy, while both use 192 generated records.
 - **Shipping methods:** The source transcription did not specify options, so the form uses Standard, Express, and Priority while preserving the required empty state.
 - **Invoice KPI totals:** `350 / 120 / 80 / 245` are design labels and intentionally do not equal the 11 seeded invoices.
